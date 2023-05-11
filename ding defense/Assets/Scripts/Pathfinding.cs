@@ -13,7 +13,7 @@ public class Pathfinding : MonoBehaviour
     {
         // hvis der stadig er waypoints at komme hentil
         if (waypointIndex < waypoints.Length)
-        {   
+        {
             // bevæge "enemien" mod det nuværende waypoint
             transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].position, moveSpeed * Time.deltaTime);
 
@@ -21,6 +21,19 @@ public class Pathfinding : MonoBehaviour
             if (transform.position == waypoints[waypointIndex].position)
             {
                 waypointIndex++;
+            }
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (waypoints != null || waypoints.Length > 1)
+        {
+            for (int i = 0; i < waypoints.Length - 1; i++)
+            {
+                if (waypoints[i] != null && waypoints[i + 1] != null)
+                {
+                    Debug.DrawLine(waypoints[i].position, waypoints[i + 1].position, Color.red);
+                }
             }
         }
     }
