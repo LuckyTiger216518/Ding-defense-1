@@ -60,18 +60,4 @@ public class Pathfinding : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (waypoints != null && waypoints.Length > 1)
-        {
-            for (int i = 0; i < waypoints.Length - 1; i++)
-            {
-                if (waypoints[i] != null && waypoints[i + 1] != null)
-                {
-                    Debug.DrawLine(waypoints[i].position, waypoints[i + 1].position, Color.red);
-                }
-            }
-        }
-    }
 }
