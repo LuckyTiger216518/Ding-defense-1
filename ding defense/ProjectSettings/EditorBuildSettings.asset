@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/start.unity
+    guid: eb0171e6a34b8bc41be72d3ee8bec7d3
+  - enabled: 1
+    path: Assets/ding-wip1.unity
+    guid: 4830ffb0f0fe1584b99b849d82922312
   m_configObjects: {}
