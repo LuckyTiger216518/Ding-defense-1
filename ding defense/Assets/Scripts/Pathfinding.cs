@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
-    private Transform[] waypoints; // an array of waypoints to follow
-    public float moveSpeed = 5f; // the speed at which to move towards the waypoints
-    private int waypointIndex = 0; // index of the current waypoint
+    private Transform[] waypoints; // array of waypoints som bliver fulgt
+    public float moveSpeed = 5f; // farten den bevæger sig mod waypoints
+    private int waypointIndex = 0; // et index af det nuværende waypoint
 
     void Start()
     {
-        WaypointCommunicator.OnWaypointsUpdated += SetWaypoints;
+        WaypointCommunicator.OnWaypointsUpdated += SetWaypoints; // subscribe til eventen der opdatere waypoints
     }
 
     private void OnDestroy()
     {
-        WaypointCommunicator.OnWaypointsUpdated -= SetWaypoints;
+        WaypointCommunicator.OnWaypointsUpdated -= SetWaypoints;// her "unsubscriber den til det event når objectet er destroyed
     }
-
+    // her sætter den array af waypoints og reseter waypoint indexet
     public void SetWaypoints(Transform[] newWaypoints)
     {
         waypoints = newWaypoints;
-        waypointIndex = 0; // Reset the waypoint index when receiving new waypoints
+        waypointIndex = 0; // Her reseter waypoint index når den modtager nye waypoints
 
-        // Set the initial position to the first waypoint
+        // Sætter den start positionen for det første waypoint
         if (waypoints != null && waypoints.Length > 0)
         {
             transform.position = waypoints[waypointIndex].position;
@@ -36,27 +36,27 @@ public class Pathfinding : MonoBehaviour
             return;
         }
 
-        // Move towards the current waypoint
+        // Bevæger sig mod det nuværende waypoint
         transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].position, moveSpeed * Time.deltaTime);
 
-        // Check if the enemy has reached the current waypoint
+        // Så Checker den hvis "enemy" har noget det nuværende waypoint
         if (transform.position == waypoints[waypointIndex].position)
         {
             waypointIndex++;
 
-            // If reached the last waypoint, destroy the enemy game object
+            // Her destroyer den "enemy" gameobject når den når det sidste waypoint
             if (waypointIndex >= waypoints.Length)
             {
                 GameObject enemyObject = gameObject.transform.Find("Enemy").gameObject;
                 if (enemyObject != null)
                 {
-                    Destroy(enemyObject);
+                    Destroy(enemyObject); // her bliver gameobjectet destroyet
                 }
                 else
                 {
-                    Debug.LogError("No enemy object found.");
+                    Debug.LogError("No enemy object found."); // her siger den hvis der ikke er noget enemy object fundet så logger den en error
                 }
-                return; // Exit the Update method to prevent further updates
+                return; // Her stopper den Update metoden for at stoppe flere updates
             }
         }
     }
