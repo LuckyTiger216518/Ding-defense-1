@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHeight : MonoBehaviour
 {
     
-    public float height; // højde
+    private float height; // højde
 
     // Sæt højde på enemy
     public void SetHeight()

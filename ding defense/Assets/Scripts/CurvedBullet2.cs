@@ -1,17 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class CurvedBullet2 : MonoBehaviour
 {
     private Transform target;
     Enemy enemyScript;
     int damage = 1;
+    public float speed = 10f;
+    public float curveStrength = 1f;
+    private Vector3 initialDirection;
+    private float distanceToTarget;
 
-    //Se video igen fra det her punkt (for træt til at forstå) (omkring 09:15)
-
-    public float speed = 70f;
     public void Seek(Transform _target)
     {
         target = _target;
+   ;
     }
 
     void Update()
@@ -19,6 +23,7 @@ public class Bullet : MonoBehaviour
         if (target == null)
         {
             Destroy(gameObject);
+            return;
         }
 
         Vector3 direction = target.position - transform.position;

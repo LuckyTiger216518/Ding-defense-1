@@ -29,6 +29,8 @@ public class Tower : MonoBehaviour
     //Hvor bullet bliver skudt fra
     public Transform firePoint;
 
+    private float towerHeight;
+
 
     void Start()
     {
@@ -82,6 +84,11 @@ public class Tower : MonoBehaviour
         }
 
     }
+    private bool IsEnemyAtSameHeight(GameObject enemy)
+    {
+        return Mathf.Approximately(enemy.transform.position.y, towerHeight);
+    }
+
 
     void Update()
     {
@@ -118,6 +125,7 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
+        
         //Spawner vores bullet
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
@@ -125,6 +133,14 @@ public class Tower : MonoBehaviour
         if (bullet != null)
         {
             bullet.Seek(target);
+       
+        }
+
+        CurvedBullet bullet2 = bulletGO.GetComponent<CurvedBullet>();
+
+        if (bullet2 != null)
+        {
+            bullet2.Seek(target);
         }
     }
 
