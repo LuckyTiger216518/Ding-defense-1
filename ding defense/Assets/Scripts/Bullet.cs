@@ -3,6 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Transform target;
+    Enemy enemyScript;
+    int damage = 1;
 
     //Se video igen fra det her punkt (for træt til at forstå) (omkring 09:15)
 
@@ -11,7 +13,6 @@ public class Bullet : MonoBehaviour
     {
         target = _target;
     }
-
 
     void Update()
     {
@@ -29,14 +30,12 @@ public class Bullet : MonoBehaviour
             HitTarget();
             return;
         }
-
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-
     }
 
     void HitTarget()
     {
+        target.GetComponent<Enemy>().TakeDamage(1);
         Destroy(gameObject);
     }
-
 }

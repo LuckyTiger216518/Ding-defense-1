@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class FlyingPathfinding : MonoBehaviour
 {
-    public Transform[] waypoints;
-    public Vector3[] segmentPoints;
-    public int order = 2;
-    public int startIndex = 0;
-    public float currentT;
-    public float speed = 1f;
-
+    public Transform[] waypoints; // et array af transforms som repræsenterer waypointsne
+    public Vector3[] segmentPoints; // et array af vector3 som repræsenterer "control points" for Bezier kurverne
+    public int order = 2; // orderen af Bezier kurverne
+    public int startIndex = 0; // index af starting waypointet
+    public float currentT; // den nuværende t værdi for at evalurere Bezier kurverne
+    public float speed = 1f; // hvor hurtigt objectet bevæger sig langs Bezier kurverne
+ 
     public void Update()
     {
-        currentT += Time.deltaTime * speed;
-        transform.position = EvaluatePosition();
+        currentT += Time.deltaTime * speed; // øg den aktuelle t-værdi baseret på tid og hastighed
+        transform.position = EvaluatePosition(); // opdater objektets position baseret på den evaluerede position
     }
 
 
@@ -23,26 +23,26 @@ public class FlyingPathfinding : MonoBehaviour
     {
         if (segmentPoints == null || !(segmentPoints.Length > 0))
         {
-            FindNewSegmentPoints();
+            FindNewSegmentPoints(); // hvis der ikke er segmentpunkter, find nye baseret på det aktuelle indeks
         }
         else if (currentT >= 1f)
         {
             int temp = ((int)currentT - 1)+1;
-            startIndex += temp * order;
-        currentT %= 1f;
-            FindNewSegmentPoints();
+            startIndex += temp * order; // øg startindekset baseret på den aktuelle t-værdi og ordren
+            currentT %= 1f; // nulstil den aktuelle t-værdi
+            FindNewSegmentPoints(); // find nye segmentpunkter baseret på det opdaterede startindeks
         }
-        Vector3 result = Bezier(segmentPoints,currentT);
+        Vector3 result = Bezier(segmentPoints,currentT); // evaluér positionen ved hjælp af Bezier-kurven
 
         return result;
     }
 
     private void FindNewSegmentPoints()
     {
-        segmentPoints = new Vector3[order + 1];
+        segmentPoints = new Vector3[order + 1]; // opret et array af vector3 til at gemme segmentpunkterne
         for (int i = 0; i < order+1; i++)
         {
-            segmentPoints[i] = waypoints[i + startIndex].position;
+            segmentPoints[i] = waypoints[i + startIndex].position; // tildel waypointenes positioner til segmentpunkterne
         }
     }
 
@@ -50,14 +50,14 @@ public class FlyingPathfinding : MonoBehaviour
     {
         if (positions.Length < 2)
         {
-            return positions[0];
+            return positions[0]; // hvis der ikke er nok positioner, returner den første position
         }
         Vector3[] partial = new Vector3[positions.Length - 1];
         for (int i = 0; i < partial.Length; i++)
         {
-            partial[i] = Vector3.Lerp(positions[i], positions[i + 1], t);
+            partial[i] = Vector3.Lerp(positions[i], positions[i + 1], t); // interpolér mellem positioner for at få delvise positioner
         }
-        return Bezier(partial, t);
+        return Bezier(partial, t); // kald rekursivt Bezier-funktionen med de delvise positioner
     }
     private void OnDrawGizmosSelected()
     {

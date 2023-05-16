@@ -3,42 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 public class WaypointCommunicator : MonoBehaviour
 {
-    public Transform[] waypoints; // an array of waypoints to follow
+    public Transform[] waypoints; // et array af waypoints, der skal følges
 
-    // Define an event for sending waypoints
+    // Definer en begivenhed til at sende waypoints
     public delegate void WaypointsEventHandler(Transform[] waypoints);
     public static event WaypointsEventHandler OnWaypointsUpdated;
 
     void Start()
     {
-        UpdateWaypoints();
+        UpdateWaypoints(); // Opdater waypoints ved start
     }
 
     void OnEnable()
     {
-        // Subscribe to the event for future enemy spawns
+        // Abonner på begivenheden for fremtidige fjendespawn
         StartCoroutine(CheckForEnemySpawn());
     }
 
     void OnDisable()
     {
-        // Unsubscribe from the event
+        // Afmeld begivenheden
         StopCoroutine(CheckForEnemySpawn());
     }
 
     void UpdateWaypoints()
     {
-        // Find all existing Enemy objects in the scene
+        // Find alle eksisterende Enemy-objekter i scenen
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        // Update each Enemy with the waypoints
+        // Opdater hver Enemy med waypoints
         foreach (GameObject enemy in enemies)
         {
             WaypointReceiver waypointReceiver = enemy.GetComponent<WaypointReceiver>();
 
             if (waypointReceiver != null)
             {
-                waypointReceiver.ReceiveWaypoints(waypoints);
+                waypointReceiver.ReceiveWaypoints(waypoints); // Send waypoints til Enemy
             }
             else
             {
@@ -53,13 +53,13 @@ public class WaypointCommunicator : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
 
-            // Find newly spawned enemies with Enemy tag
+            // Find ny-spawnede fjender med tagget "Enemy"
             GameObject[] newEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            // Check if any new enemies have spawned
+            // Tjek om der er nye fjender, der er spawnet
             if (newEnemies.Length > 0)
             {
-                UpdateWaypoints();
+                UpdateWaypoints(); // Opdater waypoints
             }
         }
     }

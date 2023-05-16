@@ -3,36 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 public class WaypointReceiver : MonoBehaviour
 {
-    private Transform[] waypoints; // an array of waypoints to follow
-    private int currentWaypointIndex = 0; // the index of the current waypoint
-    private float speed = 5f; // the speed at which to move the gameobject
+    private Transform[] waypoints; // et array af waypoints, der skal følges
+    private int currentWaypointIndex = 0; // index for det aktuelle waypoint
+    private float speed = 5f; // hastigheden, hvormed spilobjektet bevæger sig
 
-    // receive the waypoints from the WaypointCommunicator script
+    // modtag waypoints fra WaypointCommunicator-scriptet
     public void ReceiveWaypoints(Transform[] waypoints)
     {
-        this.waypoints = waypoints;
+        this.waypoints = waypoints; // opdater waypoints
     }
 
     void Update()
     {
         if (waypoints == null || waypoints.Length == 0)
         {
-            return;
+            return; // hvis der ikke er waypoints, eller arrayet er tomt, afslut metoden
         }
 
-        // move towards the current waypoint
+        // bevæg mod det aktuelle waypoint
         Vector3 direction = waypoints[currentWaypointIndex].position - transform.position;
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-        // check if the gameobject has reached the current waypoint
+        // tjek om spilobjektet har nået det aktuelle waypoint
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
-            // move to the next waypoint
+            // gå til næste waypoint
             currentWaypointIndex++;
             if (currentWaypointIndex >= waypoints.Length)
             {
-                // reached the last waypoint, reset to the first waypoint
-                Destroy(gameObject);
+                Destroy(gameObject); // ødelæg spilobjektet
             }
         }
     }
