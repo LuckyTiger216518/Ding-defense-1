@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 6288489006882625192}
   - component: {fileID: 6288489006882625195}
   - component: {fileID: 6288489006882625172}
-  - component: {fileID: -7513245234695536825}
+  - component: {fileID: 3152289305574766405}
   - component: {fileID: -2299324011288360511}
-  - component: {fileID: 7242149480071010695}
+  - component: {fileID: -5725370008481198846}
+  - component: {fileID: 240602702959681076}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Name: FlyingEnemy
+  m_TagString: FlyingEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2db64dec1f55d304998f09ab8380d53e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7fc8e6e641a624f8b47176c53907b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7513245234695536825
+--- !u!114 &3152289305574766405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +123,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6288489006882625194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902af0f6c04cfbc4c97f0426df964432, type: 3}
+  m_Script: {fileID: 11500000, guid: c8d2f1f64f01ef347b2c3a623d43b895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  waypoints: []
 --- !u!114 &-2299324011288360511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +141,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
---- !u!114 &7242149480071010695
+--- !u!114 &-5725370008481198846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288489006882625194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ff9cfcbe17f984aaf4b9b36e2fe03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  segmentPoints: []
+  order: 2
+  startIndex: 0
+  currentT: 0
+  speed: 1
+--- !u!114 &240602702959681076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,6 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6288489006882625194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cc242340033d84b8ccc9f072b12bf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 902af0f6c04cfbc4c97f0426df964432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5

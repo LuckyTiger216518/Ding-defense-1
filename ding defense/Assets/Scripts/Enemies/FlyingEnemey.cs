@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class FlyingEnemy : MonoBehaviour
 {
     public int maxHealth = 5;
     public int currentHealth;
@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        print($"Enemys health is: {currentHealth}");
 
         if (currentHealth <= 0)
         {

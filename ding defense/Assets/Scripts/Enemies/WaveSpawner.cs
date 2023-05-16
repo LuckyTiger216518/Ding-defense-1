@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -13,10 +14,18 @@ public class WaveSpawner : MonoBehaviour
 
     private int waveIndex = 1;
 
+    public TextMeshProUGUI waveCounterText; // Reference to a TextMeshProUGUI component to display the wave count
+
+    void Start()
+    {
+        waveCounterText.text = "Wave: 0"; // Initialize the wave counter text
+    }
+
     void Update()
     {
         if (countdown <= 0f)
         {
+            waveCounterText.text = "Wave: " + waveIndex; // Update the wave counter text
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
@@ -26,14 +35,15 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < waveIndex; i++)
+        
+
+        for (int i = 0; i <= waveIndex; i++)
         {
             SpawnEnemy();
-            print("Enemy spawned");
             yield return new WaitForSeconds(0.3f);
         }
-
         waveIndex++;
+        
     }
 
     void SpawnEnemy()
