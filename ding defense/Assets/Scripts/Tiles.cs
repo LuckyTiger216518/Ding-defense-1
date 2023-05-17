@@ -15,8 +15,12 @@ public class Tiles : MonoBehaviour
     //Det nuværrende tårn, som står på vores tile
     private GameObject tower;
 
+    public int towerCost = 50;                  
+    private MoneyManager moneyManager;
+
     private void Start()
     {
+        moneyManager = FindObjectOfType<MoneyManager>();
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
     }
@@ -24,17 +28,28 @@ public class Tiles : MonoBehaviour
     //Bliver kaldt når du trykker på et tile
     private void OnMouseDown()
     {
+
+        if (moneyManager != null && moneyManager.currentMoney >= towerCost)
+        {
+            moneyManager.DecreaseMoney(towerCost);
+
+        }
+
         //Hvis der allerede er et tårn på tilen, så sker der ikke noget
         if (tower != null)
         {
             return;
         }
 
+      
+
+
         //Kalder på vores tower i et buildmanager scriptet
         GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
 
         //Bygger vores tårn på vores nuværrende placering
         tower = (GameObject)Instantiate(towerToBuild, transform.position, transform.rotation);
+
     }
 
     //Kører scriptet hver gang musen går ind i et tiles' collider
