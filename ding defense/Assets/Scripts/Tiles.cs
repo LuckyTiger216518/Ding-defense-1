@@ -15,14 +15,19 @@ public class Tiles : MonoBehaviour
     //Det nuværrende tårn, som står på vores tile
     private GameObject tower;
 
-    public int towerCost = 50;                  
+    //Hvad towers skal koste 
+    public int towerCost = 50;
+
+    //skaber så vi kan arbejde med moneymanager
     private MoneyManager moneyManager;
 
     BuildManager buildManager;
 
     private void Start()
     {
+        //finder manageren i projektet (vores gamemanager)
         moneyManager = FindObjectOfType<MoneyManager>();
+
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
 
@@ -32,12 +37,17 @@ public class Tiles : MonoBehaviour
     //Bliver kaldt når du trykker på et tile
     private void OnMouseDown()
     {
+<<<<<<< Updated upstream
         //Hvis vores buildmanager er nul, så skal der ikke ske noget i det her script
         if (buildManager.GetTowerToBuild() == null)
         {
             return;
         }
 
+=======
+        //checker om der er penge på vores manager og hvis der er penge og det ikke er mindre end kosten så kan du kører koden og hermed 
+        //fjerne penge fra vores manager og placere tårne
+>>>>>>> Stashed changes
         if (moneyManager != null && moneyManager.currentMoney >= towerCost)
         {
             moneyManager.DecreaseMoney(towerCost);

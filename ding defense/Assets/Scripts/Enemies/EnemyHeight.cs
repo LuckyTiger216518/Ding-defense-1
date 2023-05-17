@@ -10,16 +10,13 @@ public class EnemyHeight : MonoBehaviour
     // Sæt højde på enemy
     public void SetHeight()
     {
-
+        //sæytter enemy height som y værdi
         height = transform.position.y;
-    }
-    public float GetHeight()
-    {
-        return height;
     }
 
     private void Update()
     {
+        //opdatere hvert frame højden
         SetHeight();    
     }
 }
