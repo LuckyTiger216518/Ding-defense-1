@@ -37,17 +37,17 @@ public class Tiles : MonoBehaviour
     //Bliver kaldt når du trykker på et tile
     private void OnMouseDown()
     {
-<<<<<<< Updated upstream
+
         //Hvis vores buildmanager er nul, så skal der ikke ske noget i det her script
         if (buildManager.GetTowerToBuild() == null)
         {
             return;
         }
 
-=======
+
         //checker om der er penge på vores manager og hvis der er penge og det ikke er mindre end kosten så kan du kører koden og hermed 
         //fjerne penge fra vores manager og placere tårne
->>>>>>> Stashed changes
+
         if (moneyManager != null && moneyManager.currentMoney >= towerCost)
         {
             moneyManager.DecreaseMoney(towerCost);
