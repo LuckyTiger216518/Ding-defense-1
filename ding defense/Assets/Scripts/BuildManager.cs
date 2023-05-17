@@ -12,6 +12,8 @@ public class BuildManager : MonoBehaviour
     //skaber moneymaneger at arbejde med i dette script
     private MoneyManager moneyManager;
 
+    public UpgradeUI upgradeUI;
+
     /*Inden scriptet starter, bliver BuildManager puttet ind i en variable, som kan blive refferet 
      til overalt, på et senere tidspunkt*/
 
@@ -29,6 +31,8 @@ public class BuildManager : MonoBehaviour
     //Vores tårn der slower enemies
     public GameObject slowingTowerPrefab;
 
+    private Tiles selectedTile;
+
     //Vi sætter vores towerToBuild til at være vores standTowerPrefab
     private void Start()
     {
@@ -45,8 +49,18 @@ public class BuildManager : MonoBehaviour
         return towerToBuild;
     }
 
+    //Gør at vi kun kan vælge et tårn til at bygge eller et tile (i forhold til upgrades)
+    public void SelectTile(Tiles tile)
+    {
+        selectedTile = tile;
+        towerToBuild = null;
+
+        upgradeUI.SetTarget(tile);
+    }
+
     public void SetTowerToBuild(GameObject tower)
     {
         towerToBuild = tower;
+        selectedTile = null;
     }
 }
