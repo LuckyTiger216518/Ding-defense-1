@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - SlowBullet
+  - End
   layers:
   - Default
   - TransparentFX

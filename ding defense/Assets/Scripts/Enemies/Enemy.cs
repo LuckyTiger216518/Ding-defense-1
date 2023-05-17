@@ -24,10 +24,21 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        
+
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("End"))
+        {
+            HealthManager healthManager = other.GetComponent<HealthManager>();
+            if (healthManager != null)
+            {
+                healthManager.DecreaseHealth();
+            }
         }
     }
     private void OnDestroy()
