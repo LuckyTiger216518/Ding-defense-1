@@ -36,4 +36,14 @@ public class Bullet : MonoBehaviour
     {
         target.GetComponent<Enemy>().TakeDamage(1);
     }
+
+    //variable til brug i opgradering
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
+    public int GetDamage()
+    {
+        return damage;
+    }
 }

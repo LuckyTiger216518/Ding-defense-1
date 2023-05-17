@@ -36,6 +36,24 @@ public class MoneyManager : MonoBehaviour
         UpdateMoneyUI();
     }
 
+    public bool CanAfford(int amount)
+    {
+        return currentMoney >= amount;
+    }
+
+    public void SpendMoney(int amount)
+    {
+        if (CanAfford(amount))
+        {
+            currentMoney -= amount;
+            UpdateMoneyUI();
+        }
+        else
+        {
+            Debug.Log("Insufficient funds to spend.");
+        }
+    }
+
     private void UpdateMoneyUI()
     {
         //sætter sådan at den selv skriver i UI værdien af penge vi har sådan det bliver nemmere at holde styr på

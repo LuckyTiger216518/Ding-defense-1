@@ -31,7 +31,6 @@ public class Tower : MonoBehaviour
 
     private float towerHeight;
 
-
     void Start()
     {
         /*Får vores "UpdateTarget" til kun at update et par gange i 
