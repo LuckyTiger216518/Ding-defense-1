@@ -2751,7 +2751,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622120507}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 873837eab57ec214a985718b3bb03181, type: 3}
   m_Name: 
@@ -5297,7 +5297,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -5608661703880958522, guid: a56423e1a512cc04d9b2d7d2d665dc24, type: 3}
         m_TargetAssemblyTypeName: UpgradeTower, Assembly-CSharp
-        m_MethodName: Upgrade
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
