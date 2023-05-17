@@ -6,5 +6,5 @@ public class TowerCheckHeight : MonoBehaviour
 {
     private float height; // højde
 
-    // Sæt højde på enemy
+    
 }

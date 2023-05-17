@@ -64,15 +64,18 @@ public class CurvedBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Når target er ramt skal det fjerne projektil sådan de ikke bare kollider og spawner uendeligt
         if (target != null)
         {
             Destroy(gameObject);
             return;
         }
 
+        //projektil normal udregning for at ramme target
         Vector3 direction = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
+        //chechk om det har ramt et target opdateret hvert frame
         if (direction.magnitude <= distanceThisFrame)
         {
             HitTarget();
@@ -81,7 +84,7 @@ public class CurvedBullet : MonoBehaviour
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
     }
 
-
+    //rammer det target skal enemy tage skade 
     void HitTarget()
     {
         target.GetComponent<Enemy>().TakeDamage(1);
