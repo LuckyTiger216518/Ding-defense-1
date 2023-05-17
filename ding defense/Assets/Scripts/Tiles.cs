@@ -18,16 +18,25 @@ public class Tiles : MonoBehaviour
     public int towerCost = 50;                  
     private MoneyManager moneyManager;
 
+    BuildManager buildManager;
+
     private void Start()
     {
         moneyManager = FindObjectOfType<MoneyManager>();
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
+
+        buildManager = BuildManager.instance;
     }
 
     //Bliver kaldt når du trykker på et tile
     private void OnMouseDown()
     {
+        //Hvis vores buildmanager er nul, så skal der ikke ske noget i det her script
+        if (buildManager.GetTowerToBuild() == null)
+        {
+            return;
+        }
 
         if (moneyManager != null && moneyManager.currentMoney >= towerCost)
         {
@@ -41,11 +50,8 @@ public class Tiles : MonoBehaviour
             return;
         }
 
-      
-
-
         //Kalder på vores tower i et buildmanager scriptet
-        GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
+        GameObject towerToBuild = buildManager.GetTowerToBuild();
 
         //Bygger vores tårn på vores nuværrende placering
         tower = (GameObject)Instantiate(towerToBuild, transform.position, transform.rotation);
@@ -55,6 +61,12 @@ public class Tiles : MonoBehaviour
     //Kører scriptet hver gang musen går ind i et tiles' collider
     private void OnMouseEnter()
     {
+        //Farven skal kun skiftes på tiles, hvis der er valgt et tårn
+        if (buildManager.GetTowerToBuild() == null)
+        {
+            return;
+        }
+
         //Ændre farven på vores tile til hoverColor
         rend.material.color = hoverColor;
     }

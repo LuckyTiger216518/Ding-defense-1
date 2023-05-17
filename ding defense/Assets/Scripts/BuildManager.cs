@@ -19,12 +19,16 @@ public class BuildManager : MonoBehaviour
     //Vores standard tårn
     public GameObject standardTowerPrefab;
 
+    //Vores tårn til flyvende enemies
+    public GameObject flyingTowerPrefab;
+
+    //Vores tårn der slower enemies
+    public GameObject slowingTowerPrefab;
+
     //Vi sætter vores towerToBuild til at være vores standTowerPrefab
     private void Start()
     {
         moneyManager = FindObjectOfType<MoneyManager>();
-
-        towerToBuild = standardTowerPrefab;
     }
 
     //Det tårn vi vil bygge
@@ -34,5 +38,10 @@ public class BuildManager : MonoBehaviour
     public GameObject GetTowerToBuild()
     {
         return towerToBuild;
+    }
+
+    public void SetTowerToBuild(GameObject tower)
+    {
+        towerToBuild = tower;
     }
 }
