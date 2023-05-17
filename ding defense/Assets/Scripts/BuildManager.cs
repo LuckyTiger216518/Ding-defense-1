@@ -52,15 +52,28 @@ public class BuildManager : MonoBehaviour
     //Gør at vi kun kan vælge et tårn til at bygge eller et tile (i forhold til upgrades)
     public void SelectTile(Tiles tile)
     {
+        if (selectedTile == tile)
+        {
+            DeselectTile();
+            return;
+        }
         selectedTile = tile;
         towerToBuild = null;
 
         upgradeUI.SetTarget(tile);
     }
 
+    public void DeselectTile()
+    {
+        selectedTile = null;
+        upgradeUI.Hide();
+    }
+
     public void SetTowerToBuild(GameObject tower)
     {
         towerToBuild = tower;
         selectedTile = null;
+
+        DeselectTile();
     }
 }
