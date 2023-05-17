@@ -2556,8 +2556,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6288489006882625174, guid: 559de2d53b89380409b3777729254609, type: 3}
+  flyingEnemyPrefab: {fileID: 6288489006882625174, guid: 4c50dea1831b2fc4da2c79aacb584911, type: 3}
   spawnPoint: {fileID: 1001455809}
   timeBetweenWaves: 5
+  enemyCount: 0
   waveCounterText: {fileID: 1926249157}
 --- !u!4 &598519329
 Transform:
