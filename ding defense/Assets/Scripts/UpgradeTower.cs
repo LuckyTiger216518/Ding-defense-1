@@ -3,7 +3,6 @@ using UnityEngine;
 public class UpgradeTower : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform firePoint;
 
     public int upgradeCost = 100;
 
