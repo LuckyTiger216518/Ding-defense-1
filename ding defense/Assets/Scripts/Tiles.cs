@@ -53,10 +53,10 @@ public class Tiles : MonoBehaviour
             moneyManager.DecreaseMoney(towerCost);
 
         }
-
-        //Hvis der allerede er et tårn på tilen, så sker der ikke noget
-        if (tower != null)
+            //Hvis der allerede er et tårn på tilen, så sker der ikke noget
+            if (tower != null)
         {
+
             return;
         }
 
