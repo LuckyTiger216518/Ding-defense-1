@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 6288489006882625192}
   - component: {fileID: 6288489006882625195}
   - component: {fileID: 6288489006882625172}
-  - component: {fileID: 3152289305574766405}
   - component: {fileID: -2299324011288360511}
   - component: {fileID: -5725370008481198846}
   - component: {fileID: 240602702959681076}
+  - component: {fileID: 706606180211224000}
   m_Layer: 0
   m_Name: FlyingEnemy
   m_TagString: FlyingEnemy
@@ -114,19 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7fc8e6e641a624f8b47176c53907b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3152289305574766405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288489006882625194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d2f1f64f01ef347b2c3a623d43b895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
 --- !u!114 &-2299324011288360511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
+  currencyValue: 10
+  moneyManager: {fileID: 0}
 --- !u!114 &-5725370008481198846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +161,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+--- !u!114 &706606180211224000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288489006882625194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cc242340033d84b8ccc9f072b12bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

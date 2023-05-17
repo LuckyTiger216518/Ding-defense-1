@@ -63,4 +63,40 @@ public class WaypointCommunicator : MonoBehaviour
             }
         }
     }
+    void UpdatesWaypoints()
+    {
+        // Find alle eksisterende Enemy-objekter i scenen
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("FlyingEnemy");
+
+        // Opdater hver Enemy med waypoints
+        foreach (GameObject enemy in enemies)
+        {
+            WaypointReceiver waypointReceiver = enemy.GetComponent<WaypointReceiver>();
+
+            if (waypointReceiver != null)
+            {
+                waypointReceiver.ReceiveWaypoints(waypoints); // Send waypoints til Enemy
+            }
+            else
+            {
+                Debug.LogError("WaypointReceiver component not found on an Enemy GameObject.");
+            }
+        }
+    }
+    IEnumerator ChecksForEnemySpawn()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+
+            // Find ny-spawnede fjender med tagget "Enemy"
+            GameObject[] newEnemies = GameObject.FindGameObjectsWithTag("FlyingEnemy");
+
+            // Tjek om der er nye fjender, der er spawnet
+            if (newEnemies.Length > 0)
+            {
+                UpdatesWaypoints(); // Opdater waypoints
+            }
+        }
+    }
 }
