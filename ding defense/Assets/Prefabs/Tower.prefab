@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6027345177171643148}
   - component: {fileID: 8893650961934351759}
   - component: {fileID: 7231060753133488111}
+  - component: {fileID: -5608661703880958522}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -148,3 +149,17 @@ MonoBehaviour:
   rotate: {fileID: 5536843606673953861}
   bulletPrefab: {fileID: 7582631753152234185, guid: c810e60cf414f534b95e4e367ea31f5a, type: 3}
   firePoint: {fileID: 2310557775232765660}
+--- !u!114 &-5608661703880958522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529939089116458224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873837eab57ec214a985718b3bb03181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7582631753152234185, guid: c810e60cf414f534b95e4e367ea31f5a, type: 3}
+  upgradeCost: 100

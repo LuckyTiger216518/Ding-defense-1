@@ -1,31 +1,37 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeTower : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-
     public int upgradeCost = 100;
-
-    private Bullet bullet;
-    private MoneyManager moneyManager;
+    public int damageIncrease = 1;
+    public Bullet bullet;
+    public MoneyManager moneyManager;
 
     private void Start()
     {
-        bullet = bulletPrefab.GetComponent<Bullet>();
-        moneyManager = FindObjectOfType<MoneyManager>();
+        Button upgradeButton = GetComponent<Button>();
+        upgradeButton.onClick.AddListener(UpgradeTowerOnClick);
     }
 
-    public void Upgrade()
+    private void UpgradeTowerOnClick()
     {
         if (moneyManager.CanAfford(upgradeCost))
         {
-            bullet.SetDamage(bullet.GetDamage() + 1);
             moneyManager.SpendMoney(upgradeCost);
-            Debug.Log("Tower upgraded! Damage increased to: " + bullet.GetDamage());
+            UpgradeBullet();
         }
         else
         {
-            Debug.Log("Insufficient funds to upgrade tower.");
+            Debug.Log("Insufficient funds to upgrade the tower.");
         }
+    }
+
+    private void UpgradeBullet()
+    {
+        int currentDamage = bullet.GetDamage();
+        int newDamage = currentDamage + damageIncrease;
+        bullet.SetDamage(newDamage);
+        Debug.Log("Tower upgraded. Bullet damage increased to " + newDamage + ".");
     }
 }
