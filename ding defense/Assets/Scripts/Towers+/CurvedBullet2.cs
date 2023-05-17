@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CurvedBullet2 : MonoBehaviour
 {
+
+
+    //ALT DET HER ER FOR AT TESTE SOM HVORDAN VI FIK ALT TIL AT VIRKE. 
+
     private Transform target;
     Enemy enemyScript;
     int damage = 1;
