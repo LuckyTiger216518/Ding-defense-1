@@ -13,7 +13,7 @@ public class Tiles : MonoBehaviour
     private Renderer rend;
 
     //Det nuværrende tårn, som står på vores tile
-    private GameObject tower;
+    public GameObject tower;
 
     //Hvad towers skal koste 
     public int towerCost = 50;
