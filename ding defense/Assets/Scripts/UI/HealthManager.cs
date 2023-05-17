@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour
     public int health = 100;  
     public TextMeshProUGUI healthText;  
 
-    private void Start()
+    private void Update()
     {
         UpdateHealthText();
     }
